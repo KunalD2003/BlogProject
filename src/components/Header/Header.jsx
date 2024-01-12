@@ -2,7 +2,6 @@ import React from 'react'
 import { Container, Logo, LogoutBtn} from '../index.js'
 import { useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
-import authSlice from '../../Store/authSlice.js'
 
 function Header() {
   const authStatus = useSelector((state) => {
@@ -57,7 +56,7 @@ function Header() {
                     </li>
                   ) : null
                 )}
-                {authSlice && (
+                {authStatus && (
                   <li>
                     <LogoutBtn />
                   </li>

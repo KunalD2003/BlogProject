@@ -3,15 +3,15 @@ import service from '../Appwrite/crud'
 import {PostCard, Container} from '../components/index'
 
 function Home() {
-    const [posts, getPosts] = useState("")
+    const [posts, setPosts] = useState("")
 
     useEffect(() => {
-        service .getPosts().then((posts) => {
+        service.getPosts().then((posts) => {
             if(posts){
-                getPosts(posts.documents)
+                setPosts(posts.documents)
             }
         })
-    },[posts])
+    })
     if (posts.length === 0) {
         return(
             <div className="w-full py-8 mt-4 text-center">
