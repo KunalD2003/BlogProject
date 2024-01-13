@@ -12,7 +12,7 @@ function AllPosts() {
             }
         })
     },[posts])
-  return (
+  return posts ? (
     <div className='w-full py-8'>
         <Container>
             <div className='flex flex-wrap'>
@@ -24,7 +24,9 @@ function AllPosts() {
             </div>
             </Container>
     </div>
-  )
+  ) : (<div>
+    <h1>There is no post here</h1>
+    </div>)
 }
 
 export default AllPosts
