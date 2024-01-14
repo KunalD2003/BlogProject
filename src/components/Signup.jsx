@@ -16,6 +16,7 @@ function Signup() {
         setError("")
         try {
             const createUserData = await authService.createAccount(data)
+            console.log(createUserData);
             if (createUserData) {
                 const userData = await authService.getCurrentUser()
                 if (userData) {
@@ -37,7 +38,7 @@ function Signup() {
                     </span>
                 </div>
             </div> */}
-            <div>
+            <div className='bg-red-200 p-6 rounded-lg'>
 
             <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
             <p className="mt-2 text-center text-base text-black/60">
@@ -66,6 +67,10 @@ function Signup() {
                         placeholder='Enter your email'
                         {...register("email", {
                             required: true,
+                            validate: {
+                                matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                "Email address must be a valid address",
+                            }
                         })} />
                     <Input
                         label='Password:'

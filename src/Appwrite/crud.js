@@ -14,6 +14,7 @@ export class CrudOps {
     }
     async createPost({ title, slug, content, featuredImage, status, userId }) {
         try {
+            console.log(userId);
             return await this.databases.createDocument(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,

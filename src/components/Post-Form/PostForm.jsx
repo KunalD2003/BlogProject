@@ -16,7 +16,7 @@ function PostForm({ post }) {
     })
 
     const navigate = useNavigate()
-    const userData = useSelector((state) => state.auth.userData)
+    const userData = useSelector((state) => state.auth.userData );
 
     const submit = async (data) => {
         if (post) {
@@ -37,6 +37,8 @@ function PostForm({ post }) {
         }
         else {
             const file = await service.uploadFile(data.image[0])
+            console.log(userData);
+            console.log(userData.$id);
 
             if (file) {
                 const fileId = file.$id
@@ -75,7 +77,7 @@ function PostForm({ post }) {
     },[watch,slugTransform,setValue])
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap bg-red-200 p-2 rounded-lg">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
@@ -105,7 +107,7 @@ function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={service.getFilePreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />

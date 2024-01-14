@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { login as authLogin } from '../Store/authSlice'
 import {Button, Input, Logo} from "./index"
-import {useDispatch} from "react-redux"
+import {useDispatch , useSelector} from "react-redux"
 import authService from "../Appwrite/auth"
 import {useForm} from "react-hook-form"
 
@@ -18,7 +18,10 @@ function Login() {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if(userData) dispatch(authLogin(userData));
+                if(userData) {
+                    console.log(authLogin(userData));
+                    dispatch(authLogin(userData));
+                }
                 navigate("/")
             }
         } catch (error) {
@@ -28,14 +31,10 @@ function Login() {
 
   return (
     <div
-    className='flex items-center justify-center w-full'
+    className='flex items-center justify-center w-full m-6'
     >
-        <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-        <div className="mb-2 flex justify-center">
-                    <span className="inline-block w-full max-w-[100px]">
-                        <Logo width="100%" />
-                    </span>
-        </div>
+        <div className={`mx-auto w-full max-w-lg bg-red-200 rounded-xl p-10 border border-black/10`}>
+        
         <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
         <p className="mt-2 text-center text-base text-black/60">
                     Don&apos;t have any account?&nbsp;
