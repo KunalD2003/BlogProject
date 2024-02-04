@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import service from '../Appwrite/crud'
 import {PostCard, Container} from '../components/index'
+import { useSelector } from 'react-redux'
 
 function Home() {
     const [posts, setPosts] = useState([])
@@ -12,12 +13,32 @@ function Home() {
             }
         })
     },[])
+
+    const authStatus = useSelector((state) => {
+        return state.auth.status
+    })
+
     if (posts.length === 0) {
+        if(authStatus){
+            return(
+                <div className="w-full py-8 mt-4 text-center">
+                <Container>
+                    <div className="flex flex-wrap min-h-44">
+                        <div className="p-12 w-full">
+                            <h1 className="text-2xl font-bold hover:text-gray-500">
+                                There is no post here
+                            </h1>
+                        </div>
+                    </div>
+                </Container>
+            </div>
+            )
+        }
         return(
             <div className="w-full py-8 mt-4 text-center">
                 <Container>
-                    <div className="flex flex-wrap">
-                        <div className="p-2 w-full">
+                    <div className="flex flex-wrap min-h-44">
+                        <div className="p-12 w-full">
                             <h1 className="text-2xl font-bold hover:text-gray-500">
                                 Login to read posts
                             </h1>

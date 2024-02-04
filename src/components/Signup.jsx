@@ -29,7 +29,7 @@ function Signup() {
         }
     }
     return (
-        <div className='flex items-center justify-center w-full'>
+        <div className='flex items-center justify-center w-full mx-6'>
             {/* <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black`} style={{ borderColor: 'rgba(0, 0, 0, 0.1)' }}>
 
                 <div className="mb-2 flex justify-center">
@@ -38,7 +38,7 @@ function Signup() {
                     </span>
                 </div>
             </div> */}
-            <div className='bg-red-200 p-6 rounded-lg'>
+            <div className='mx-auto w-full max-w-lg bg-red-200 rounded-xl p-10 border border-black/10'>
 
             <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
             <p className="mt-2 text-center text-base text-black/60">
